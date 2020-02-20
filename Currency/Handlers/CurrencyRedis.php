@@ -17,6 +17,6 @@ class CurrencyRedis extends CurrencyDB
 
 	protected function get(): ?float
 	{
-		return $this->fake_redis_data[$this->currency] ?? null;
+		return $this->fake_redis_data[$this->currency->getKey()] ?? null;
 	}
 }
