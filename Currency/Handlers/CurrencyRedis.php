@@ -6,17 +6,17 @@ use Currency\CurrencyEnum;
 
 class CurrencyRedis extends CurrencyDB
 {
-	protected $fake_redis_data = [];//массив псевдо редиса
+	public static $fake_redis_data = [];//массив псевдо редиса
 
 	protected function saveToCache(float $currency): bool
 	{
-		$this->fake_redis_data[$this->currency->getKey()] = $currency;
+		self::$fake_redis_data[$this->currency->getKey()] = $currency;
 
 		return true;
 	}
 
 	protected function get(): ?float
 	{
-		return $this->fake_redis_data[$this->currency->getKey()] ?? null;
+		return self::$fake_redis_data[$this->currency->getKey()] ?? null;
 	}
 }
