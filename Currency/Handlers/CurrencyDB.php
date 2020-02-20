@@ -17,6 +17,6 @@ class CurrencyDB extends CurrencyHTTPS
 
 	protected function get(): ?float
 	{
-		return $fake_db_data[$this->currency] ?? null;
+		return $this->fake_db_data[$this->currency] ?? null;
 	}
 }

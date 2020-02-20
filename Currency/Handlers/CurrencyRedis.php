@@ -10,13 +10,13 @@ class CurrencyRedis extends CurrencyDB
 
 	protected function saveToCache(float $currency): bool
 	{
-		$this->ake_redis_data[$this->currency->getKey()] = $currency;
+		$this->fake_redis_data[$this->currency->getKey()] = $currency;
 
 		return true;
 	}
 
 	protected function get(): ?float
 	{
-		return $ake_redis_data[$this->currency] ?? null;
+		return $this->fake_redis_data[$this->currency] ?? null;
 	}
 }
