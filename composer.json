@@ -8,7 +8,8 @@
     ],
     "require": {
         "myclabs/php-enum": "^1.7",
-        "goaop/parser-reflection": "^2.1"
+        "goaop/parser-reflection": "^2.1",
+        "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "classmap": [
