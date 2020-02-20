@@ -1,0 +1,18 @@
+{
+    "name": "nadamson/tanuki",
+    "authors": [
+        {
+            "name": "nadamson",
+            "email": "nikolay256256@gmail.com"
+        }
+    ],
+    "require": {
+        "myclabs/php-enum": "^1.7",
+        "goaop/parser-reflection": "^2.1"
+    },
+    "autoload": {
+        "classmap": [
+            "Currency/"
+        ]
+    }
+}
