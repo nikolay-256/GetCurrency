@@ -4,6 +4,6 @@ use MyCLabs\Enum\Enum;
 
 class CurrencyEnum extends Enum
 {
-	public const USDRUB = true;
-	public const EURRUB = true;
+	public const USDRUB = "USDRUB";
+	public const EURRUB = "EURRUB";
 }
