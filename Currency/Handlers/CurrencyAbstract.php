@@ -41,14 +41,14 @@ abstract class CurrencyAbstract
 	/**
 	 * Основной метод получения валюты из кеша или запросом
 	 */
-	public function getCurrency(): ?float
+	public function getPrice(): ?float
 	{
 		$ret_currency = null;
 		$ret_currency = $this->get();
 		if ($ret_currency === null) {
 			$reflect = new ReflectionClass($this);
 			$parent_instance = $reflect->getParentClass()->newInstance($this->currency);
-			$ret_currency = $parent_instance->getCurrency();
+			$ret_currency = $parent_instance->getPrice();
 			//кешируем
 			if (!$this->saveToCache($ret_currency)) {
 				trigger_error('Error save cache');
