@@ -6,7 +6,7 @@ use Currency\CurrencyEnum;
 
 class CurrencyDB extends CurrencyHTTPS
 {
-	protected static $fake_db_data = [];//массив псевдо базы данных
+	public static $fake_db_data = [];//массив псевдо базы данных
 
 	protected function saveToCache(float $currency): bool
 	{
