@@ -8,21 +8,21 @@ use \Go\ParserReflection\ReflectionClass;
 abstract class CurrencyAbstract
 {
 	/**
-	 * Îáúåêò âàëþòû
+	 * ÐžÐ±ÑŠÐµÐºÑ‚ Ð²Ð°Ð»ÑŽÑ‚Ñ‹
 	 *
 	 * @var \Currency\CurrencyEnum
 	 */
 	protected $currency;
 
 	/**
-	 * Ïîëó÷èòü èç õðàíèëèùà
+	 * ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð¸Ð· Ñ…Ñ€Ð°Ð½Ð¸Ð»Ð¸Ñ‰Ð°
 	 *
 	 * @return float|null
 	 */
 	abstract protected function get(): ?float;
 
 	/**
-	 * Çàïèñàòü â êåø
+	 * Ð—Ð°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ð² ÐºÐµÑˆ
 	 *
 	 * @return bool
 	 */
@@ -31,7 +31,7 @@ abstract class CurrencyAbstract
 	/**
 	 * CurrencyAbstract constructor.
 	 *
-	 * @param \Currency\CurrencyEnum $currency Âàëþòà
+	 * @param \Currency\CurrencyEnum $currency Ð’Ð°Ð»ÑŽÑ‚Ð°
 	 */
 	public function __construct(CurrencyEnum $currency)
 	{
@@ -39,7 +39,7 @@ abstract class CurrencyAbstract
 	}
 
 	/**
-	 * Îñíîâíîé ìåòîä ïîëó÷åíèÿ âàëþòû èç êåøà èëè çàïðîñîì
+	 * ÐžÑÐ½Ð¾Ð²Ð½Ð¾Ð¹ Ð¼ÐµÑ‚Ð¾Ð´ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ñ Ð²Ð°Ð»ÑŽÑ‚Ñ‹ Ð¸Ð· ÐºÐµÑˆÐ° Ð¸Ð»Ð¸ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ¾Ð¼
 	 */
 	public function getPrice(): ?float
 	{
@@ -49,7 +49,7 @@ abstract class CurrencyAbstract
 			$reflect = new ReflectionClass($this);
 			$parent_instance = $reflect->getParentClass()->newInstance($this->currency);
 			$ret_currency = $parent_instance->getPrice();
-			//êåøèðóåì
+			//ÐºÐµÑˆÐ¸Ñ€ÑƒÐµÐ¼
 			if (!$this->saveToCache($ret_currency)) {
 				trigger_error('Error save cache');
 			}

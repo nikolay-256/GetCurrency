@@ -6,7 +6,7 @@ use Currency\CurrencyEnum;
 
 class CurrencyRedis extends CurrencyDB
 {
-	public static $fake_redis_data = [];//массив псевдо редиса
+	public static $fake_redis_data = [];//РјР°СЃСЃРёРІ РїСЃРµРІРґРѕ СЂРµРґРёСЃР°
 
 	protected function saveToCache(float $currency): bool
 	{

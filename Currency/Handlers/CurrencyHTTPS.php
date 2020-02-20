@@ -8,7 +8,7 @@ class CurrencyHTTPS extends CurrencyAbstract
 {
 	protected function get(): ?float
 	{
-		//Запрос к сервису
+		//Р—Р°РїСЂРѕСЃ Рє СЃРµСЂРІРёСЃСѓ
 		$ret_currency = rand(50, 150);
 		if ($ret_currency === null) {
 			throw new \Exception('Failed get currency on HTTPS');

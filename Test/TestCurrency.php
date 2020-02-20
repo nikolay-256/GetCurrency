@@ -8,22 +8,22 @@ use PHPUnit\Framework\TestCase;
 class TestCurrency extends TestCase
 {
 	/**
-	 * Проверка рекурсивных вызовов конструкции получения валюты
+	 * РџСЂРѕРІРµСЂРєР° СЂРµРєСѓСЂСЃРёРІРЅС‹С… РІС‹Р·РѕРІРѕРІ РєРѕРЅСЃС‚СЂСѓРєС†РёРё РїРѕР»СѓС‡РµРЅРёСЏ РІР°Р»СЋС‚С‹
 	 */
 	public function testCurrency()
 	{
 		$current_currency_usd = new CurrencyEnum(CurrencyEnum::USDRUB);
 		$current_currency_eur = new CurrencyEnum(CurrencyEnum::EURRUB);
-		$price = (new CurrencyRedis($current_currency_usd))->getPrice();//Начальное получение цен. База и редис пустые, вызывается класс https, в котором отдается рандомное число
+		$price = (new CurrencyRedis($current_currency_usd))->getPrice();//РќР°С‡Р°Р»СЊРЅРѕРµ РїРѕР»СѓС‡РµРЅРёРµ С†РµРЅ. Р‘Р°Р·Р° Рё СЂРµРґРёСЃ РїСѓСЃС‚С‹Рµ, РІС‹Р·С‹РІР°РµС‚СЃСЏ РєР»Р°СЃСЃ https, РІ РєРѕС‚РѕСЂРѕРј РѕС‚РґР°РµС‚СЃСЏ СЂР°РЅРґРѕРјРЅРѕРµ С‡РёСЃР»Рѕ
 		$this->assertSame(CurrencyRedis::$fake_redis_data[$current_currency_usd->getKey()]
 			, CurrencyDB::$fake_db_data[$current_currency_usd->getKey()],
-			"Сравнение фейковых хранилищ после первого получения цены"
+			"РЎСЂР°РІРЅРµРЅРёРµ С„РµР№РєРѕРІС‹С… С…СЂР°РЅРёР»РёС‰ РїРѕСЃР»Рµ РїРµСЂРІРѕРіРѕ РїРѕР»СѓС‡РµРЅРёСЏ С†РµРЅС‹"
 			);
 		$my_eur_price = 40.0;
-		CurrencyRedis::$fake_redis_data[$current_currency_eur->getKey()] = $my_eur_price;//дальше редиса не пойдет получение данных
+		CurrencyRedis::$fake_redis_data[$current_currency_eur->getKey()] = $my_eur_price;//РґР°Р»СЊС€Рµ СЂРµРґРёСЃР° РЅРµ РїРѕР№РґРµС‚ РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С…
 		$price = (new CurrencyRedis($current_currency_eur))->getPrice();
-		$this->assertSame($price, $my_eur_price, "Сравнение получения цены евро после установки конкретной цены в редис");
-		$this->assertSame(empty(CurrencyDB::$fake_db_data[$current_currency_usd->getKey()]), false, "По usd базу дергали и она НЕ пуста");
-		$this->assertSame(empty(CurrencyDB::$fake_db_data[$current_currency_eur->getKey()]), true, "По eur базу не дергали и она пуста");
+		$this->assertSame($price, $my_eur_price, "РЎСЂР°РІРЅРµРЅРёРµ РїРѕР»СѓС‡РµРЅРёСЏ С†РµРЅС‹ РµРІСЂРѕ РїРѕСЃР»Рµ СѓСЃС‚Р°РЅРѕРІРєРё РєРѕРЅРєСЂРµС‚РЅРѕР№ С†РµРЅС‹ РІ СЂРµРґРёСЃ");
+		$this->assertSame(empty(CurrencyDB::$fake_db_data[$current_currency_usd->getKey()]), false, "РџРѕ usd Р±Р°Р·Сѓ РґРµСЂРіР°Р»Рё Рё РѕРЅР° РќР• РїСѓСЃС‚Р°");
+		$this->assertSame(empty(CurrencyDB::$fake_db_data[$current_currency_eur->getKey()]), true, "РџРѕ eur Р±Р°Р·Сѓ РЅРµ РґРµСЂРіР°Р»Рё Рё РѕРЅР° РїСѓСЃС‚Р°");
 	}
 }
