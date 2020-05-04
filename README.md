@@ -1,5 +1,6 @@
-Задача:
-https://docs.google.com/document/d/1u_4nKHKSda6IRaNXWOIQKtadPe5wZmSNLSHDhaIRLJ4/edit#heading=h.600jq9k8r8wl
+<h1>Логика получения курсов валют</h1>
+<br>
+<a target="_blank" href="https://docs.google.com/document/d/1fH8vISNtM1VhBorSJbro3wzpdXmNmCtJrkKzbMySv3I/edit?usp=sharing">Ссылка на задачу</a>
 
 # Для запуска юниттеста:
 1. composer install
