@@ -8,21 +8,21 @@ use \Go\ParserReflection\ReflectionClass;
 abstract class CurrencyAbstract
 {
 	/**
-	 * Объект валюты
+	 * Currency Object
 	 *
 	 * @var \Currency\CurrencyEnum
 	 */
 	protected $currency;
 
 	/**
-	 * Получить из хранилища
+	 * Get from storage
 	 *
 	 * @return float|null
 	 */
 	abstract protected function get(): ?float;
 
 	/**
-	 * Записать в кеш
+	 * Write to cache
 	 *
 	 * @return bool
 	 */
@@ -31,7 +31,7 @@ abstract class CurrencyAbstract
 	/**
 	 * CurrencyAbstract constructor.
 	 *
-	 * @param \Currency\CurrencyEnum $currency Валюта
+	 * @param \Currency\CurrencyEnum $currency Currency
 	 */
 	public function __construct(CurrencyEnum $currency)
 	{
@@ -39,7 +39,7 @@ abstract class CurrencyAbstract
 	}
 
 	/**
-	 * Основной метод получения валюты из кеша или запросом
+	 * The main method of obtaining currency from the cache or request
 	 */
 	public function getPrice(): ?float
 	{
@@ -49,7 +49,7 @@ abstract class CurrencyAbstract
 			$reflect = new ReflectionClass($this);
 			$parent_instance = $reflect->getParentClass()->newInstance($this->currency);
 			$ret_currency = $parent_instance->getPrice();
-			//кешируем
+			//cache
 			if (!$this->saveToCache($ret_currency)) {
 				trigger_error('Error save cache');
 			}

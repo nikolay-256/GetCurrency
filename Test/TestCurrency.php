@@ -8,22 +8,22 @@ use PHPUnit\Framework\TestCase;
 class TestCurrency extends TestCase
 {
 	/**
-	 * Проверка рекурсивных вызовов конструкции получения валюты
+	 * Checking recursive calls of a currency receipt construct
 	 */
 	public function testCurrency()
 	{
 		$current_currency_usd = new CurrencyEnum(CurrencyEnum::USDRUB);
 		$current_currency_eur = new CurrencyEnum(CurrencyEnum::EURRUB);
-		$price = (new CurrencyRedis($current_currency_usd))->getPrice();//Начальное получение цен. База и редис пустые, вызывается класс https, в котором отдается рандомное число
+		$price = (new CurrencyRedis($current_currency_usd))->getPrice();//Initial pricing. The base and radish are empty, the https class is called, in which a random number is given
 		$this->assertSame(CurrencyRedis::$fake_redis_data[$current_currency_usd->getKey()]
 			, CurrencyDB::$fake_db_data[$current_currency_usd->getKey()],
-			"Сравнение фейковых хранилищ после первого получения цены"
+			"Comparison of fake stores after the first price receipt"
 			);
 		$my_eur_price = 40.0;
-		CurrencyRedis::$fake_redis_data[$current_currency_eur->getKey()] = $my_eur_price;//дальше редиса не пойдет получение данных
+		CurrencyRedis::$fake_redis_data[$current_currency_eur->getKey()] = $my_eur_price;//there will be no interaction beyond redis
 		$price = (new CurrencyRedis($current_currency_eur))->getPrice();
-		$this->assertSame($price, $my_eur_price, "Сравнение получения цены евро после установки конкретной цены в редис");
-		$this->assertSame(empty(CurrencyDB::$fake_db_data[$current_currency_usd->getKey()]), false, "По usd базу дергали и она НЕ пуста");
-		$this->assertSame(empty(CurrencyDB::$fake_db_data[$current_currency_eur->getKey()]), true, "По eur базу не дергали и она пуста");
+		$this->assertSame($price, $my_eur_price, "Comparison of getting the euro price after setting a specific price in redis");
+		$this->assertSame(empty(CurrencyDB::$fake_db_data[$current_currency_usd->getKey()]), false, "The base was pulled by usd and it is NOT empty");
+		$this->assertSame(empty(CurrencyDB::$fake_db_data[$current_currency_eur->getKey()]), true, "On eur the base is not pulled and it is empty");
 	}
 }
